@@ -17,11 +17,32 @@
 
   <h2>Variabel Superglobal</h2>
   <ul><b>$GLOBALS</b></ul>
-  <p>Sebuah array yang berisi referensi ke semua variabel global dari script</p>
+  <p>Sebuah array yang berisi referensi ke semua variabel global dari script.Variabel global adalah variabel yang dapat
+    diakses dari lingkup apapun. </p>
+  <p>Variabel dengan cakupan paling luar secara otomatis merupakan variabel global, dan dapat digunakan dengan lingkup
+    apapun.</p>
+  <p>Contoh variabel global yaitu</p>
+  <?php
+    $x = 60;
+    function myfunction(){
+      echo $GLOBALS['x'];
+    }
+    Myfunction()
+  ?>
   <br>
 
   <ul><b>$_SERVER</b></ul>
   <p>Memegang informasi tentang server web termasuk header, path, dan script lokasi</p>
+  <p>The $_SERVER superglobal menyimpan informasi tentang server web termasuk header, jalur, dan lokasi skrip.</p>
+  <p>Contoh $_SERVER yaitu</p>
+  <?php 
+    echo $_SERVER['PHP_SELF']; //Mengembalikan nama file dari skrip yang sedang dijalankan
+    echo $_SERVER['SERVER_NAME']; //Mengembalikan nama server host (seperti www.w3schools.com)
+    echo $_SERVER['HTTP_HOST'];
+    echo $_SERVER['HTTP_REFERER']; //Mengembalikan URL lengkap halaman saat ini (tidak dapat diandalkan karena tidak semua user-agent mendukungnya)
+    echo $_SERVER['HTTP_USER_AGENT'];
+    echo $_SERVER['SCRIPT_NAME'];
+  ?>
   <br>
 
   <ul><b>$_REQUEST</b></ul>
