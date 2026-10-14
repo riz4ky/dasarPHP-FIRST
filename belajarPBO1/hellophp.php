@@ -12,7 +12,10 @@
   <P>Berikut ini merupakan praktikum dasar pembelajaran PHP.</P>
   <?php
       echo "Hello, PHP <br>";
-      echo "Echo digunakan untuk menampilkan sesuatu ke layar";
+      echo "Echo digunakan untuk menampilkan sesuatu ke layar <br>";
+      echo "Nama  : Raden Muhammad Rizky  <br>";
+      echo "NIM   : 2530521005 <br>";
+      echo "Kelas : 3A <br>";
     ?>
   <br>
 </body>
