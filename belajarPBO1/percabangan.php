@@ -8,18 +8,18 @@
 </head>
 
 <body>
-  <h1>PERULANGAN DENGAN MENGGUNAKAN PHP</h1>
+  <h1>PERCABANGAN DENGAN MENGGUNAKAN PHP</h1>
   <p>Berikut ini contoh percabangan menentukan nilai true or false</p>
   <?php 
-    $x = 90; 
-    if ( $x > 0) {
-      echo "TRUE, karena", " ", $x , " ","besar dari 0";
+    $nilai = 90; 
+    if ( $nilai >= 85) {
+      echo " Nilai mata kuliah struktur data sangat baik yaitu ", $nilai. "<br>";
     } 
-    elseif ( $x == 0) {
-      echo "Tengah-tengah";
+    elseif ( $nilai >= 80) {
+      echo "Nilai mata kuliah struktur data baik yaitu ", $nilai. "<br>";
     }
     else{
-      echo "FALSE, periksa kembali operator";
+      echo "Perlu melakukan remedial";
     }
     ?>
   <br>
