@@ -1,11 +1,4 @@
-<!-- Variabel PHP -->
-<?php
-  $nama = "Raden Rizky";
-  $umur = 19;
-  $prodi = "Teknik Informatika";
-
-?>
-
+<!-- Control Flow PHP -->
 <!DOCTYPE html>
 <html lang="id">
 
