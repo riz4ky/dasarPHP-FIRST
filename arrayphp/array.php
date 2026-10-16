@@ -1,11 +1,4 @@
-<!-- Variabel PHP -->
-<?php
-  $nama = "Raden Rizky";
-  $umur = 19;
-  $prodi = "Teknik Informatika";
-
-?>
-
+<!-- Array PHP -->
 <!DOCTYPE html>
 <html lang="id">
 
