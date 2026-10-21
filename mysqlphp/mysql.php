@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Array Dalam PHP</title>
+  <title>Database & MySQL</title>
   <style>
   /* Pengaturan dasar */
   * {
@@ -15,7 +15,7 @@
 
   body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: #f4f4f4;
+    bacground-color: #f4f4f4;
     color: #333;
   }
 
@@ -51,6 +51,12 @@
     color: #2563eb;
   }
 
+  .table {
+    border: 1px;
+    padding: 16;
+
+  }
+
   .main-content p {
     line-height: 1.6;
     margin-bottom: 15px;
@@ -76,10 +82,9 @@
 </head>
 
 <body>
-
   <!-- Header -->
   <header class="header">
-    <h1>Array Dalam PHP</h1>
+    <h1>Database & MySQL</h1>
     <p>Welcome to pembelajaran PHP Raden</p>
   </header>
 
@@ -88,27 +93,47 @@
 
     <!-- Main Content -->
     <main class="main-content">
-      <h2>Array</h2>
+      <h2>MSQL PHP</h2>
       <p>
-        Array adalah struktur data yang digunakan untuk menyimpan beberapa nilai dalam satu variabel.
-        Tanpa array, programmer perlu membuat banyak variabel berbeda untuk menyimpan setiap data.
-        Dengan array, beberapa nilai yang saling berhubungan dapat dikelompokkan sehingga lebih mudah dikelola dan
-        diproses.
+        Data adalah sebuah kumpulan informasi/fakta mentah yang berupa angka, karakter, atau simmbol yang belum diolah
+        dan tidak memiliki makna bagi pengguna nya.
+        Sedangkan informasi adalah sebuah data yang telah diproses, diorganisir, dan disusun dalam konteks tertentu
+        sehingga memiliki nilai dan makna bagi pengguna nya.
+        Basis data terdiri dari dua suku kata yaitu basis yang artiny atempat, markas, atau gudang penyimpanan.
+        Sedangkan data bermakna referensi dunia nyata yang terstruktur dan saling berkaitan.
       </p>
 
       <p>
-        Array merupakan sebuah struktur data yang digunakan untuk menyimpan sekumpulan data dengan tipe yang sama
-        Array dibagi menjadi beberapa bagian yaitu:
-        Item di dalam array dapat berupa tpe data apapun.
+        Basis data adalah kumpulan suatu data yang terstruktur dan saling berkaitan dan disimpan di dalam elektronik
+        komputer.
+        Basis data dikelola menggunakan perangkat lunak khusus yanng disebut DBMS (Database Management System).
       </p>
 
-      <h2>Array Standar</h2>
+      <h2>Halaman Admin</h2>
       <p>
-        Array standar yaitu sebuah array yang berisikan data-data dan diakses melalui indeks tertentu.
-        Dalam array yang diindeks, setiap item memiliki nomor indeks.
-        Item array pertama memiliki indeks 0, item array kedua memiliki indeks 1, dll.
-        Contoh dari array yaitu:
+        Berikut ini merupakan contoh halaman admin
       </p>
+      <table border="2" cellpadding="17" cellspacing="5">
+        <tr>
+          <th>No.</th>
+          <th>Aksi</th>
+          <th>Gambar</th>
+          <th>NIM</th>
+          <th>Nama</th>
+          <th>Email</th>
+          <th>Jurusan</th>
+        </tr>
+
+        <tr>
+          <td>1</td>
+          <td>
+            <a href="">Ubah data disini | </a>
+            <a href="">Hapus data disini</a>
+          </td>
+          <td><img src="img/gambar6.jpeg" alt=""></td>
+        </tr>
+      </table>
+
       <main class="php">
         <?php 
         $array1 = ["Raden", "Kaza", "Ahmi", "Yuda", "Mulqi"];
