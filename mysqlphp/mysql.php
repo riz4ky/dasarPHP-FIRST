@@ -1,217 +1,89 @@
+<?php
+//Koneksi ke database
+$conn = mysqli_connect("localhost", "root", "Raden1904", "ujicoba");
+// Menggunakan variabel conn (connection) agar mempermudah dalam query
+
+//Mengambil data dari tabel mahasiswa/ query data mahasiswa.
+$result = mysqli_query($conn, "SELECT * FROM mahasiswa"); 
+if($result){
+  echo mysqli_error($conn);
+}
+//Sintaks SQL disarankan menggunakan huruf kapital semua.
+// Disimpan dalam variabel result agar melakukan sesuai dengan perintah true.
+// Namun jika melakukan perintah yang salah, maka akan menampilkan perintah false.
+// Tujuannya adalah agar mencegah menulisan query yang salah.
+// Menggunakan var_dump untuk mencegah error
+
+// Mengambil data (fetch) mahasiswa dari $result
+// Terdapat berbagai cara dalam mengambil sebuah data:
+// 1. mysqli_fetch_row() mengembalikan array numeric dan harus menggunakan parameter[]
+// Contohnya yaitu:
+// $mhs = mysqli_fetch_row($result);
+// var_dump($mhs[3]); 
+
+// 2. mysqli_fetch_assoc() mengembalikan array asosiatif, dapat diakses melalui string parameter["nama"]
+// Contohnya yaitu:
+// $mhs = mysqli_fetch_assoc($result);
+// var_dump($mhs["NIM"]); 
+
+
+// 3. mysqli_fetch_array() mengembalikan array yang dapat berupa pemanggilan string maupun menggunakan parameter[]
+// Kekurangannya adalah data yang disajikan menjadi double dan membuat pemrosesan menjadi lebih berat.
+// Contohnya yaitu:
+// $mhs = mysqli_fetch_array($result);
+// var_dump($mhs["NIM"]); 
+
+// 4. mysqli_fetch_object()
+// $mhs = mysqli_fetch_object($result);
+// var_dump($mhs->email); 
+
+// Kita akan menggunakan pemanggilan assoc
+// Agar data yang ditampilkan tidak hanya satu, maka kita perlu melakukan perulangan:
+// while( $mhs = mysqli_fetch_assoc($result) ){
+//   var_dump($mhs); 
+// }
+?>
+
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Database & MySQL</title>
-  <style>
-  /* Pengaturan dasar */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    bacground-color: #f4f4f4;
-    color: #333;
-  }
-
-  /* Bagian Header */
-  .header {
-    background-color: #2563eb;
-    color: white;
-    padding: 25px;
-    text-align: center;
-  }
-
-  .header h1 {
-    margin-bottom: 10px;
-  }
-
-  /* Container utama */
-  .container {
-    max-width: 1000px;
-    margin: 30px auto;
-    padding: 20px;
-  }
-
-  /* Bagian Main Content */
-  .main-content {
-    background-color: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px #00000015;
-  }
-
-  .main-content h2 {
-    margin-bottom: 15px;
-    color: #2563eb;
-  }
-
-  .table {
-    border: 1px;
-    padding: 16;
-
-  }
-
-  .main-content p {
-    line-height: 1.6;
-    margin-bottom: 15px;
-    text-align: justify;
-  }
-
-  /* Tombol */
-  .tombol {
-    background-color: #2563eb;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .php {
-    line-height: 1.6;
-    margin-bottom: 15px;
-    text-align: justify
-  }
-  </style>
+  <title>Halaman Admin</title>
 </head>
 
 <body>
-  <!-- Header -->
-  <header class="header">
-    <h1>Database & MySQL</h1>
-    <p>Welcome to pembelajaran PHP Raden</p>
-  </header>
+  <h1>Daftar Mahasiswa</h1>
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      <th>No.</th>
+      <th>Aksi</th>
+      <th>Gambar</th>
+      <th>NIM</th>
+      <th>Nama</th>
+      <th>Email</th>
+      <th>Jurusan</th>
+    </tr>
 
-  <!-- Container -->
-  <div class="container">
+    <?php $i = 1; ?>
+    <?php while( $row = mysqli_fetch_assoc( $result ) ) :?>
+    <tr>
+      <td><?=  $i; ?></td>
+      <td>
+        <a href="">Ubah</a> |
+        <a href="">Hapus</a>
+      </td>
+      <td><img src="img/gambar1.jpeg <?php echo $row["gambar"];?>" width="50"></td>
+      <td><?php echo $row["nim"];?></td>
+      <td><?php echo $row["nama"];?></td>
+      <td><?php echo $row["email"];?></td>
+      <td><?php echo $row["jurusan"];?></td>
+    </tr>
+    <?php $i++; ?>
+    <?php endwhile; ?>
+  </table>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <h2>MSQL PHP</h2>
-      <p>
-        Data adalah sebuah kumpulan informasi/fakta mentah yang berupa angka, karakter, atau simmbol yang belum diolah
-        dan tidak memiliki makna bagi pengguna nya.
-        Sedangkan informasi adalah sebuah data yang telah diproses, diorganisir, dan disusun dalam konteks tertentu
-        sehingga memiliki nilai dan makna bagi pengguna nya.
-        Basis data terdiri dari dua suku kata yaitu basis yang artiny atempat, markas, atau gudang penyimpanan.
-        Sedangkan data bermakna referensi dunia nyata yang terstruktur dan saling berkaitan.
-      </p>
-
-      <p>
-        Basis data adalah kumpulan suatu data yang terstruktur dan saling berkaitan dan disimpan di dalam elektronik
-        komputer.
-        Basis data dikelola menggunakan perangkat lunak khusus yanng disebut DBMS (Database Management System).
-      </p>
-
-      <h2>Halaman Admin</h2>
-      <p>
-        Berikut ini merupakan contoh halaman admin
-      </p>
-      <table border="2" cellpadding="17" cellspacing="5">
-        <tr>
-          <th>No.</th>
-          <th>Aksi</th>
-          <th>Gambar</th>
-          <th>NIM</th>
-          <th>Nama</th>
-          <th>Email</th>
-          <th>Jurusan</th>
-        </tr>
-
-        <tr>
-          <td>1</td>
-          <td>
-            <a href="">Ubah data disini | </a>
-            <a href="">Hapus data disini</a>
-          </td>
-          <td><img src="img/gambar6.jpeg" alt=""></td>
-        </tr>
-      </table>
-
-      <main class="php">
-        <?php 
-        $array1 = ["Raden", "Kaza", "Ahmi", "Yuda", "Mulqi"];
-        print_r($array1); //print_r untuk menampilkan seluruh isi data
-      ?>
-        <br>
-      </main>
-
-      <p>Kita juga dapat mengubah nilai item array dengan menggunakan nomor indeks:</p>
-      <main class="php">
-        <?php 
-        $buah = ["Belimbing","Jeruk","Mangga","Nanas","Nangka"];
-        $buah[2] = "Lengkeng";
-        var_dump($buah);
-      ?>
-        <br>
-      </main>
-
-      <p>Kita juga dapat melakukan looping di dalam aaray untuk menampilkan semua item array</p>
-      <main class="php">
-        <?php 
-        $buah = ["Belimbing","Jeruk","Mangga","Nanas","Nangka"];
-        foreach ( $buah as $x) { 
-        echo "$x <br>";
-        }
-      ?>
-        <br>
-      </main>
-
-      <p><b>Asosiatif Array</b></p>
-      <p>
-        Array biasa harus menggunakan index, namun asosiatif array dapat mengakses berbagai indeks contoh nya nama,
-        kelas,dll. Contoh dari asosiatif array yaitu:
-      </p>
-      <main class="php">
-        <?php 
-        $array3 = [
-        "nama" => "raden",
-        "usia" => "19",
-        "status" => "mahasiswa"
-        ];
-        print_r($array3);
-      ?>
-        <br>
-      </main>
-
-      <P><b>Multidimensional Array</b></P>
-      <p>
-        Yaitu gabungan dari Array biasa dan Asosiatif Array
-        Contohnya yaitu:
-      </P>
-      <main class="php">
-        <?php 
-        $namakelompok = [
-        [
-          "nama" => "Raden",
-          "usia" => "19",
-          "kelas" => "3A",
-        ],
-        [
-          "nama"=> "Mulqi",
-          "usia" => "19",
-          "kelas" => "3C"
-        ],
-        [
-          "nama"=> "Kaza",
-          "usia"=> "19",
-          "kelas"=> "3C"
-        ]
-      ];
-      print_r($namakelompok);
-      print_r($namakelompok [2]);
-      //Jadi dimensional Array itu gabungan dari array biasa dan asosiatif array.
-      //Jadi kita bisa mengakses semua isi di dalamnya, maupun mengakses index tertentu.
-      ?>
-        </ul>
-      </main>
-  </div>
 </body>
 
 </html>
