@@ -1,18 +1,18 @@
-<?php 
+<?php
 require "functions.php";
 $conn = mysqli_connect("localhost", "root", "Raden1904", "ujicoba");
 // cek apakah tombol submit sudah ditekan atau belum
-global $conn;  
-if ( isset($_POST["submit"]) ) {
-    // Cek apakah data berhasil di tambahkan atau tidak
-    if ( tambah($_POST) > 0 ) {
-      echo"
+global $conn;
+if (isset($_POST["submit"])) {
+  // Cek apakah data berhasil di tambahkan atau tidak
+  if (tambah($_POST) > 0) {
+    echo "
         <script>
           alert('Data berhasil ditambahkan');
           document.location.href = 'mysql2.php';
         </script>
       ";
-  } else{
+  } else {
     echo "
         <script>
           alert('Data gagal ditambahkan');
@@ -162,6 +162,9 @@ if ( isset($_POST["submit"]) ) {
 
 <body>
   <div class="container">
+    <form action="" method="post" enctype="multipart/form-data">
+
+    </form>
     <form action="" method="post" enctype="multipart/from-data">
       <div class="form-group">
         <label for="nama">Nama</label>
@@ -185,7 +188,7 @@ if ( isset($_POST["submit"]) ) {
 
       <div class="form-group">
         <label for="gambar">Foto</label>
-        <input type="text" name="gambar" id="gambar" placeholder="Masukkan foto yang anda punya" required>
+        <input type="file" name="gambar" id="gambar" placeholder="Masukkan foto yang anda punya" required>
       </div>
 
       <button type="submit" name="submit" class="btn-tambah"> + Tambahkan data</button>

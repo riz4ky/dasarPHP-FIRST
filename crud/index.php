@@ -1,6 +1,11 @@
 <?php
 require "functions.php"; //Menggunakan require untuk mengambil dari file lain.
-$mahasiswa = query("SELECT * FROM mahasiswa")
+$mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id ASC");
+
+// Tombol cari ditekan
+if (isset($_POST["cari"])) {
+  $mahasiswa = cari($_POST["keyword"]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +41,11 @@ $mahasiswa = query("SELECT * FROM mahasiswa")
     font-size: 20px;
   }
 
+  .h2 {
+    font-size: 15px;
+    color: #ffffff;
+  }
+
   .main-content {
     max-width: 800px;
     margin: 0 auto;
@@ -46,8 +56,8 @@ $mahasiswa = query("SELECT * FROM mahasiswa")
   }
 
   .btn-tambah {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 300px;
+    margin: right;
     margin-bottom: 10px;
     padding: 10px;
     color: #1e293b;
@@ -60,6 +70,17 @@ $mahasiswa = query("SELECT * FROM mahasiswa")
   .btn-tambah:hover {
     background-color: #1d4ed8;
   }
+
+  .btn-cari {
+    background-color: #1d4ed8;
+    max-width: 300px;
+    margin: right;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: #1e293b;
+    border-radius: 10px;
+    transition: 0.2s;
+  }
   </style>
 </head>
 
@@ -69,9 +90,22 @@ $mahasiswa = query("SELECT * FROM mahasiswa")
 
 <body>
   <div class="main-content">
-    <button type="submit" name="submit" class="btn-tambah">
-      <a href="tambah.php">Tambah data mahasiswa</a>
-    </button>
+    <div class="btn-tambah">
+      <h2>Tambahkan Data Anda</h2>
+      <button type="submit" name="submit" class="btn-tambah">
+        <a href="tambah.php">Tambah data mahasiswa</a>
+      </button>
+      <br>
+    </div>
+
+    <div class="btn-cari">
+      <h2>Cari Data Anda!</h2>
+      <form action="" method="post" border radius="20">
+        <input type="text" name="keyword" size="40" autofocus placeholder="Masukkan keyword pencarian..."
+          autocomplete="off">
+        <button type="submit" name="cari">Cari Mahasiswa!</button>
+      </form>
+    </div>
     <br>
     <table border="1" cellpadding="10" cellspacing="0">
       <tr>
@@ -85,21 +119,21 @@ $mahasiswa = query("SELECT * FROM mahasiswa")
       </tr>
 
       <?php $i = 1; ?>
-      <?php foreach( $mahasiswa as $row): ?>
+      <?php foreach ($mahasiswa as $row): ?>
       <tr>
-        <td><?=  $i; ?></td>
+        <td><?= $i; ?></td>
         <td>
           <a href="ubah.php?id= <?= $row["id"] ?>">Ubah</a> |
-          <a href="hapus.php?id= <?= $row["id"];?>"
+          <a href="hapus.php?id= <?= $row["id"]; ?>"
             onclick="return confirm('anda yakin ingin menghapus data ini?');">Hapus</a>
         </td>
         <td>
-          <img src="img/raden.jpeg" <?= $row["gambar"];?> width="50">
+          <img src="img/raden.jpeg" <?= $row["gambar"]; ?> width="50">
         </td>
-        <td><?php echo $row["nim"];?></td>
-        <td><?php echo $row["nama"];?></td>
-        <td><?php echo $row["email"];?></td>
-        <td><?php echo $row["jurusan"];?></td>
+        <td><?php echo $row["nim"]; ?></td>
+        <td><?php echo $row["nama"]; ?></td>
+        <td><?php echo $row["email"]; ?></td>
+        <td><?php echo $row["jurusan"]; ?></td>
       </tr>
       <?php $i++; ?>
       <?php endforeach; ?>
