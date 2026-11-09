@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-
 class Mahasiswa
 {
     private string $nim;          // Identitas tetap: tidak ada setNim().

@@ -1,13 +1,21 @@
 <?php
+
 declare(strict_types=1);
 require_once dirname(__DIR__) . '/StudentRepository.php';
 
-function check(bool $condition, string $description): void {
+function check(bool $condition, string $description): void
+{
     if (!$condition) throw new RuntimeException('FAIL: ' . $description);
     echo 'PASS: ' . $description . PHP_EOL;
 }
-function rejects(callable $callback, string $description): void {
-    try { $callback(); } catch (InvalidArgumentException $e) { check(true, $description); return; }
+function rejects(callable $callback, string $description): void
+{
+    try {
+        $callback();
+    } catch (InvalidArgumentException $e) {
+        check(true, $description);
+        return;
+    }
     throw new RuntimeException('FAIL: ' . $description);
 }
 
